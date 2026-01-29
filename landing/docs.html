@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documentation - ChitChatPosts</title>
+    <meta name="description"
+        content="Complete installation guide for ChitChatPosts - both hosted and self-hosted options." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="/src/style.css">
+    <link rel="stylesheet" href="/src/docs.css">
+</head>
+
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animated"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <span class="logo-icon">💬</span>
+                <span>ChitChatPosts</span>
+            </a>
+            <div class="nav-links">
+                <a href="/#features">Features</a>
+                <a href="/#how-it-works">How it Works</a>
+                <a href="/#install">Install</a>
+                <a href="/#pricing">Pricing</a>
+                <a href="/docs.html" class="active">Docs</a>
+                <a href="#" class="btn btn-primary btn-slack btn-sm">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zm1.271 0a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zm0 1.271a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zm10.124 2.521a2.528 2.528 0 0 1 2.52-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.52V8.834zm-1.271 0a2.528 2.528 0 0 1-2.521 2.521 2.528 2.528 0 0 1-2.521-2.521V2.522A2.528 2.528 0 0 1 15.165 0a2.528 2.528 0 0 1 2.522 2.522v6.312zm-2.522 10.124a2.528 2.528 0 0 1 2.522 2.52A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.521-2.522v-2.52h2.521zm0-1.271a2.527 2.527 0 0 1-2.521-2.521 2.526 2.526 0 0 1 2.521-2.521h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.521h-6.313z" />
+                    </svg>
+                    Add to Slack
+                </a>
+            </div>
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Docs Hero -->
+    <section class="docs-hero">
+        <div class="container">
+            <div class="section-badge">📚 Documentation</div>
+            <h1 class="section-title">Installation Guide</h1>
+            <p class="section-subtitle">
+                Everything you need to get ChitChatPosts running in your Slack workspace.
+            </p>
+        </div>
+    </section>
+
+    <!-- Docs Content -->
+    <div class="docs-layout">
+        <aside class="docs-sidebar">
+            <nav class="docs-nav">
+                <h4>Getting Started</h4>
+                <ul>
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#quick-start">Quick Start (Hosted)</a></li>
+                </ul>
+                <h4>Self-Hosted Setup</h4>
+                <ul>
+                    <li><a href="#prerequisites">Prerequisites</a></li>
+                    <li><a href="#slack-app">Create Slack App</a></li>
+                    <li><a href="#environment">Environment Variables</a></li>
+                    <li><a href="#run-locally">Run Locally</a></li>
+                    <li><a href="#deploy">Deploy to Production</a></li>
+                </ul>
+                <h4>Configuration</h4>
+                <ul>
+                    <li><a href="#llm-setup">LLM Setup</a></li>
+                    <li><a href="#channels">Channel Configuration</a></li>
+                    <li><a href="#commands">Commands Reference</a></li>
+                </ul>
+                <h4>Advanced</h4>
+                <ul>
+                    <li><a href="#oauth">Multi-Workspace OAuth</a></li>
+                    <li><a href="#cron">Automated Suggestions</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="docs-content">
+            <!-- Overview -->
+            <section id="overview" class="docs-section">
+                <h2>Overview</h2>
+                <p>ChitChatPosts is a Slack bot that observes your team's conversations and suggests social media posts.
+                    There are two ways to use it:</p>
+
+                <div class="docs-cards">
+                    <div class="docs-card">
+                        <div class="docs-card-icon">☁️</div>
+                        <h3>Option A: Hosted Version</h3>
+                        <p>We handle everything. Just click "Add to Slack" and you're done. Best for most teams.</p>
+                        <ul>
+                            <li>✓ One-click installation</li>
+                            <li>✓ Automatic updates</li>
+                            <li>✓ No server to manage</li>
+                        </ul>
+                        <a href="#quick-start" class="btn btn-primary btn-sm">Quick Start →</a>
+                    </div>
+                    <div class="docs-card">
+                        <div class="docs-card-icon">🔧</div>
+                        <h3>Option B: Self-Hosted</h3>
+                        <p>Full control. Clone the repo, use your own API keys, run on your infrastructure.</p>
+                        <ul>
+                            <li>✓ Complete data control</li>
+                            <li>✓ Use your own LLM keys</li>
+                            <li>✓ Customize everything</li>
+                        </ul>
+                        <a href="#prerequisites" class="btn btn-outline btn-sm">Self-Host Guide →</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Start -->
+            <section id="quick-start" class="docs-section">
+                <h2>Quick Start (Hosted)</h2>
+                <p>Get up and running in under 2 minutes.</p>
+
+                <div class="docs-steps">
+                    <div class="docs-step">
+                        <div class="step-num">1</div>
+                        <div class="step-content">
+                            <h4>Add to Slack</h4>
+                            <p>Click the button below to install ChitChatPosts in your workspace:</p>
+                            <a href="#" class="btn btn-primary btn-md" style="margin-top: 1rem;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52z" />
+                                </svg>
+                                Add to Slack
+                            </a>
+                        </div>
+                    </div>
+                    <div class="docs-step">
+                        <div class="step-num">2</div>
+                        <div class="step-content">
+                            <h4>Allow Permissions</h4>
+                            <p>Slack will ask you to authorize the following:</p>
+                            <ul>
+                                <li>Read messages in channels the bot is added to</li>
+                                <li>Send messages as the bot</li>
+                                <li>Access to slash commands</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="docs-step">
+                        <div class="step-num">3</div>
+                        <div class="step-content">
+                            <h4>Invite to Channels</h4>
+                            <p>Add the bot to channels you want it to monitor:</p>
+                            <div class="code-block">
+                                <code>/invite @ChitChatPosts</code>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="docs-step">
+                        <div class="step-num">4</div>
+                        <div class="step-content">
+                            <h4>Start Analyzing</h4>
+                            <p>After some conversation happens, run:</p>
+                            <div class="code-block">
+                                <code>/chitchatposts analyze</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="docs-callout success">
+                    <strong>🎉 That's it!</strong> The bot will now listen to conversations and suggest post-worthy
+                    content when you run the analyze command.
+                </div>
+            </section>
+
+            <!-- Prerequisites -->
+            <section id="prerequisites" class="docs-section">
+                <h2>Prerequisites (Self-Hosted)</h2>
+                <p>Before you begin, make sure you have:</p>
+
+                <div class="requirements-grid">
+                    <div class="requirement">
+                        <span class="req-icon">📦</span>
+                        <div>
+                            <strong>Node.js 18+</strong>
+                            <p>JavaScript runtime</p>
+                        </div>
+                    </div>
+                    <div class="requirement">
+                        <span class="req-icon">🔧</span>
+                        <div>
+                            <strong>npm or yarn</strong>
+                            <p>Package manager</p>
+                        </div>
+                    </div>
+                    <div class="requirement">
+                        <span class="req-icon">💬</span>
+                        <div>
+                            <strong>Slack Workspace</strong>
+                            <p>Admin access required</p>
+                        </div>
+                    </div>
+                    <div class="requirement">
+                        <span class="req-icon">🤖</span>
+                        <div>
+                            <strong>LLM API Key</strong>
+                            <p>OpenAI or Claude</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Create Slack App -->
+            <section id="slack-app" class="docs-section">
+                <h2>Step 1: Create Slack App</h2>
+
+                <div class="docs-steps">
+                    <div class="docs-step">
+                        <div class="step-num">1</div>
+                        <div class="step-content">
+                            <h4>Go to Slack API Dashboard</h4>
+                            <p>Visit <a href="https://api.slack.com/apps" target="_blank">api.slack.com/apps</a> and
+                                click <strong>"Create New App"</strong>.</p>
+                        </div>
+                    </div>
+                    <div class="docs-step">
+                        <div class="step-num">2</div>
+                        <div class="step-content">
+                            <h4>Choose "From Scratch"</h4>
+                            <p>Name your app (e.g., "ChitChatPosts") and select your workspace.</p>
+                        </div>
+                    </div>
+                    <div class="docs-step">
+                        <div class="step-num">3</div>
+                        <div class="step-content">
+                            <h4>Enable Socket Mode</h4>
+                            <p>Go to <strong>Socket Mode</strong> in the sidebar and enable it. Generate an
+                                <strong>App-Level Token</strong> with <code>connections:write</code> scope.
+                            </p>
+                            <div class="code-block">
+                                <code>SLACK_APP_TOKEN=xapp-1-A0123456789-...</code>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="docs-step">
+                        <div class="step-num">4</div>
+                        <div class="step-content">
+                            <h4>Add Bot Scopes</h4>
+                            <p>Go to <strong>OAuth & Permissions</strong> and add these Bot Token Scopes:</p>
+                            <div class="scopes-list">
+                                <span class="scope">channels:history</span>
+                                <span class="scope">channels:read</span>
+                                <span class="scope">chat:write</span>
+                                <span class="scope">commands</span>
+                                <span class="scope">groups:history</span>
+                                <span class="scope">groups:read</span>
+                                <span class="scope">im:history</span>
+                                <span class="scope">mpim:history</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="docs-step">
+                        <div class="step-num">5</div>
+                        <div class="step-content">
+                            <h4>Install to Workspace</h4>
+                            <p>Click <strong>"Install to Workspace"</strong> and authorize. Copy the <strong>Bot User
+                                    OAuth Token</strong>:</p>
+                            <div class="code-block">
+                                <code>SLACK_BOT_TOKEN=xoxb-1234567890-...</code>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="docs-step">
+                        <div class="step-num">6</div>
+                        <div class="step-content">
+                            <h4>Get Signing Secret</h4>
+                            <p>Go to <strong>Basic Information</strong> and copy the <strong>Signing Secret</strong>:
+                            </p>
+                            <div class="code-block">
+                                <code>SLACK_SIGNING_SECRET=abc123def456...</code>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="docs-step">
+                        <div class="step-num">7</div>
+                        <div class="step-content">
+                            <h4>Create Slash Command</h4>
+                            <p>Go to <strong>Slash Commands</strong> and create a new command:</p>
+                            <table class="docs-table">
+                                <tr>
+                                    <td>Command</td>
+                                    <td><code>/chitchatposts</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Description</td>
+                                    <td>Analyze conversations for post-worthy content</td>
+                                </tr>
+                                <tr>
+                                    <td>Usage Hint</td>
+                                    <td>[analyze | history 4h | sync]</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="docs-step">
+                        <div class="step-num">8</div>
+                        <div class="step-content">
+                            <h4>Enable Events</h4>
+                            <p>Go to <strong>Event Subscriptions</strong>, enable events, and subscribe to:</p>
+                            <div class="scopes-list">
+                                <span class="scope">message.channels</span>
+                                <span class="scope">message.groups</span>
+                                <span class="scope">message.im</span>
+                                <span class="scope">message.mpim</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Environment Variables -->
+            <section id="environment" class="docs-section">
+                <h2>Step 2: Environment Variables</h2>
+                <p>Create a <code>.env</code> file in your project root:</p>
+
+                <div class="code-block large">
+                    <pre><code># Slack Configuration (Required)
+SLACK_BOT_TOKEN=xoxb-your-bot-token
+SLACK_SIGNING_SECRET=your-signing-secret
+SLACK_APP_TOKEN=xapp-your-app-token
+
+# LLM Configuration (Choose One)
+LLM_PROVIDER=openai
+OPENAI_API_KEY=sk-your-openai-key
+
+# Or use Claude
+# LLM_PROVIDER=claude
+# CLAUDE_API_KEY=your-claude-key
+
+# Optional Configuration
+PORT=3000
+BUFFER_WINDOW_HOURS=4
+MIN_MESSAGES_FOR_ANALYSIS=5</code></pre>
+                </div>
+
+                <div class="env-table">
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Variable</th>
+                                <th>Required</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>SLACK_BOT_TOKEN</code></td>
+                                <td>✅</td>
+                                <td>Bot User OAuth Token (starts with xoxb-)</td>
+                            </tr>
+                            <tr>
+                                <td><code>SLACK_SIGNING_SECRET</code></td>
+                                <td>✅</td>
+                                <td>From Basic Information page</td>
+                            </tr>
+                            <tr>
+                                <td><code>SLACK_APP_TOKEN</code></td>
+                                <td>✅</td>
+                                <td>App-Level Token (starts with xapp-)</td>
+                            </tr>
+                            <tr>
+                                <td><code>LLM_PROVIDER</code></td>
+                                <td>❌</td>
+                                <td>Either "openai" or "claude" (default: openai)</td>
+                            </tr>
+                            <tr>
+                                <td><code>OPENAI_API_KEY</code></td>
+                                <td>❌*</td>
+                                <td>Required if using OpenAI</td>
+                            </tr>
+                            <tr>
+                                <td><code>CLAUDE_API_KEY</code></td>
+                                <td>❌*</td>
+                                <td>Required if using Claude</td>
+                            </tr>
+                            <tr>
+                                <td><code>PORT</code></td>
+                                <td>❌</td>
+                                <td>Server port (default: 3000)</td>
+                            </tr>
+                            <tr>
+                                <td><code>BUFFER_WINDOW_HOURS</code></td>
+                                <td>❌</td>
+                                <td>How long to keep messages (default: 4)</td>
+                            </tr>
+                            <tr>
+                                <td><code>MIN_MESSAGES_FOR_ANALYSIS</code></td>
+                                <td>❌</td>
+                                <td>Minimum messages needed (default: 5)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Run Locally -->
+            <section id="run-locally" class="docs-section">
+                <h2>Step 3: Run Locally</h2>
+
+                <div class="docs-steps">
+                    <div class="docs-step">
+                        <div class="step-num">1</div>
+                        <div class="step-content">
+                            <h4>Clone the Repository</h4>
+                            <div class="code-block">
+                                <code>git clone https://github.com/yourusername/chitchatposts.git
+cd chitchatposts</code>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="docs-step">
+                        <div class="step-num">2</div>
+                        <div class="step-content">
+                            <h4>Install Dependencies</h4>
+                            <div class="code-block">
+                                <code>npm install</code>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="docs-step">
+                        <div class="step-num">3</div>
+                        <div class="step-content">
+                            <h4>Setup Environment</h4>
+                            <div class="code-block">
+                                <code>cp .env.example .env
+# Edit .env with your tokens</code>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="docs-step">
+                        <div class="step-num">4</div>
+                        <div class="step-content">
+                            <h4>Start the Bot</h4>
+                            <div class="code-block">
+                                <code>npm run dev</code>
+                            </div>
+                            <p>You should see:</p>
+                            <div class="code-block success">
+                                <code>⚡️ ChitChatPosts is running!
+Mode: Socket Mode (real-time events)
+LLM Provider: openai
+LLM Configured: ✅ Yes</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="docs-callout info">
+                    <strong>💡 Socket Mode</strong> means no public URL is needed for local development. The bot
+                    connects directly to Slack's servers via WebSocket.
+                </div>
+            </section>
+
+            <!-- Deploy -->
+            <section id="deploy" class="docs-section">
+                <h2>Step 4: Deploy to Production</h2>
+                <p>Deploy ChitChatPosts to any Node.js hosting platform:</p>
+
+                <div class="deploy-options">
+                    <div class="deploy-option">
+                        <h4>🚀 Railway</h4>
+                        <div class="code-block">
+                            <code>railway init
+railway up</code>
+                        </div>
+                    </div>
+                    <div class="deploy-option">
+                        <h4>▲ Vercel</h4>
+                        <div class="code-block">
+                            <code>vercel
+# Set env vars in dashboard</code>
+                        </div>
+                    </div>
+                    <div class="deploy-option">
+                        <h4>🌊 Render</h4>
+                        <div class="code-block">
+                            <code># Connect GitHub repo
+# Add environment variables
+# Deploy</code>
+                        </div>
+                    </div>
+                    <div class="deploy-option">
+                        <h4>🐳 Docker</h4>
+                        <div class="code-block">
+                            <code>docker build -t chitchatposts .
+docker run -d --env-file .env chitchatposts</code>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- LLM Setup -->
+            <section id="llm-setup" class="docs-section">
+                <h2>LLM Setup</h2>
+                <p>ChitChatPosts supports both OpenAI and Claude. Choose one:</p>
+
+                <div class="docs-tabs">
+                    <button class="docs-tab active" data-tab="openai">OpenAI</button>
+                    <button class="docs-tab" data-tab="claude">Claude</button>
+                </div>
+
+                <div class="docs-tab-content active" id="openai-content">
+                    <ol>
+                        <li>Go to <a href="https://platform.openai.com/api-keys" target="_blank">OpenAI API Keys</a>
+                        </li>
+                        <li>Create a new API key</li>
+                        <li>Add to your <code>.env</code>:</li>
+                    </ol>
+                    <div class="code-block">
+                        <code>LLM_PROVIDER=openai
+OPENAI_API_KEY=sk-your-key-here</code>
+                    </div>
+                    <p><strong>Model used:</strong> GPT-4o-mini (cost-effective, fast, accurate)</p>
+                </div>
+
+                <div class="docs-tab-content" id="claude-content">
+                    <ol>
+                        <li>Go to <a href="https://console.anthropic.com/" target="_blank">Anthropic Console</a></li>
+                        <li>Create a new API key</li>
+                        <li>Add to your <code>.env</code>:</li>
+                    </ol>
+                    <div class="code-block">
+                        <code>LLM_PROVIDER=claude
+CLAUDE_API_KEY=your-claude-key-here</code>
+                    </div>
+                    <p><strong>Model used:</strong> Claude 3 Sonnet (nuanced understanding)</p>
+                </div>
+            </section>
+
+            <!-- Commands Reference -->
+            <section id="commands" class="docs-section">
+                <h2>Commands Reference</h2>
+
+                <div class="command-ref">
+                    <h4><code>/chitchatposts analyze</code></h4>
+                    <p>Analyze the current message buffer for post-worthy content.</p>
+                    <div class="code-block">
+                        <code>/chitchatposts analyze</code>
+                    </div>
+                </div>
+
+                <div class="command-ref">
+                    <h4><code>/chitchatposts history [time]</code></h4>
+                    <p>Fetch and analyze messages from a specific time period.</p>
+                    <div class="code-block">
+                        <code>/chitchatposts history 1h   # Last hour
+/chitchatposts history 4h   # Last 4 hours
+/chitchatposts history 1d   # Last day</code>
+                    </div>
+                </div>
+
+                <div class="command-ref">
+                    <h4><code>/chitchatposts sync</code></h4>
+                    <p>Fetch all messages since the last sync point.</p>
+                    <div class="code-block">
+                        <code>/chitchatposts sync</code>
+                    </div>
+                </div>
+            </section>
+
+            <!-- OAuth -->
+            <section id="oauth" class="docs-section">
+                <h2>Multi-Workspace OAuth (Advanced)</h2>
+                <p>To support multiple workspaces, you need to implement OAuth:</p>
+
+                <div class="docs-callout warning">
+                    <strong>⚠️ Advanced</strong> This is only needed if you want to distribute your app to multiple
+                    workspaces.
+                </div>
+
+                <h4>Required Changes:</h4>
+                <ol>
+                    <li><strong>Add Redirect URL</strong> in Slack App Dashboard → OAuth & Permissions</li>
+                    <li><strong>Store tokens per workspace</strong> instead of using env vars</li>
+                    <li><strong>Use dynamic token lookup</strong> when responding to events</li>
+                </ol>
+
+                <div class="code-block large">
+                    <pre><code>// Example: OAuth callback handler
+app.get('/slack/oauth/callback', async (req, res) => {
+  const { code, team_id } = req.query;
+  
+  const result = await client.oauth.v2.access({
+    client_id: process.env.SLACK_CLIENT_ID,
+    client_secret: process.env.SLACK_CLIENT_SECRET,
+    code
+  });
+  
+  // Store token for this workspace
+  await saveToken(team_id, result.access_token);
+  
+  res.redirect('/success');
+});</code></pre>
+                </div>
+            </section>
+
+            <!-- Cron -->
+            <section id="cron" class="docs-section">
+                <h2>Automated Suggestions (Cron)</h2>
+                <p>Set up automatic analysis with <code>node-cron</code>:</p>
+
+                <div class="code-block large">
+                    <pre><code>// src/jobs/scheduler.js
+const cron = require('node-cron');
+
+// Every 6 hours
+cron.schedule('0 */6 * * *', async () => {
+  console.log('Running 6-hour analysis...');
+  const messages = await fetchLastNHours(6);
+  const suggestion = await analyzeLLM(messages);
+  
+  if (suggestion.isPostWorthy) {
+    await postToChannel(SUGGESTIONS_CHANNEL, suggestion);
+  }
+});
+
+// Daily at midnight
+cron.schedule('0 0 * * *', async () => {
+  console.log('Running daily analysis...');
+  const messages = await fetchLastNHours(24);
+  const suggestion = await analyzeLLM(messages);
+  
+  // Check for duplicates before posting
+  if (suggestion.isPostWorthy && !isDuplicate(suggestion)) {
+    await postToChannel(SUGGESTIONS_CHANNEL, suggestion);
+  }
+});</code></pre>
+                </div>
+            </section>
+
+            <!-- Footer CTA -->
+            <section class="docs-cta">
+                <h2>Need Help?</h2>
+                <p>Can't find what you're looking for?</p>
+                <div class="docs-cta-buttons">
+                    <a href="#" class="btn btn-primary btn-md">Join Discord Community</a>
+                    <a href="#" class="btn btn-secondary btn-md">Open GitHub Issue</a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p class="copyright">© 2026 ChitChatPosts. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Twitter">𝕏</a>
+                    <a href="#" aria-label="LinkedIn">in</a>
+                    <a href="#" aria-label="GitHub">⌘</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+    <script>
+        // Docs tabs
+        document.querySelectorAll('.docs-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.docs-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.docs-tab-content').forEach(c => c.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab + '-content').classList.add('active');
+            });
+        });
+
+        // Smooth scroll for sidebar
+        document.querySelectorAll('.docs-nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Highlight current section in sidebar
+        const sections = document.querySelectorAll('.docs-section');
+        const navLinks = document.querySelectorAll('.docs-nav a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
