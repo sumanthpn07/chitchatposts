@@ -221,18 +221,18 @@ export function initScheduler(client) {
         return;
     }
 
-    // // Every 6 hours: at 0:00, 6:00, 12:00, 18:00
-    // cron.schedule('0 0,6,12,18 * * *', sixHourJob, {
-    //     timezone: 'UTC',
-    // });
+    // Every 6 hours: at 0:00, 6:00, 12:00, 18:00
+    cron.schedule('0 0,6,12,18 * * *', sixHourJob, {
+        timezone: 'UTC',
+    });
 
-    // // Daily at midnight UTC
-    // cron.schedule('0 0 * * *', dailyJob, {
-    //     timezone: 'UTC',
-    // });
+    // Daily at midnight UTC
+    cron.schedule('0 0 * * *', dailyJob, {
+        timezone: 'UTC',
+    });
 
-    cron.schedule('*/2 * * * *', sixHourJob, { timezone: 'UTC' });
-    cron.schedule('*/8 * * * *', dailyJob, { timezone: 'UTC' });
+    // cron.schedule('*/2 * * * *', sixHourJob, { timezone: 'UTC' });
+    // cron.schedule('*/8 * * * *', dailyJob, { timezone: 'UTC' });
 
     console.log('[Scheduler] ✅ Cron jobs initialized');
     console.log('[Scheduler] - 6-hour analysis: Every 6 hours (0:00, 6:00, 12:00, 18:00 UTC)');
