@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChitChatPosts - Turn Slack Conversations into Social Media Gold</title>
+  <meta name="description"
+    content="AI-powered Slack bot that quietly listens to your team's conversations and suggests LinkedIn & Twitter posts. Human-in-the-loop, always." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="ChitChatPosts - Real Conversations, Real Content" />
+  <meta property="og:description" content="Turn everyday Slack conversations into thoughtful social media posts." />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+
+<body>
+  <!-- Animated Background -->
+  <div class="bg-animated"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <span class="logo-icon">💬</span>
+        <span>ChitChatPosts</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How it Works</a>
+        <a href="#install">Install</a>
+        <a href="#pricing">Pricing</a>
+        <a href="/docs.html">Docs</a>
+        <a href="/docs.html" class="btn btn-primary btn-slack btn-sm">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zm1.271 0a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zm0 1.271a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zm10.124 2.521a2.528 2.528 0 0 1 2.52-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.52V8.834zm-1.271 0a2.528 2.528 0 0 1-2.521 2.521 2.528 2.528 0 0 1-2.521-2.521V2.522A2.528 2.528 0 0 1 15.165 0a2.528 2.528 0 0 1 2.522 2.522v6.312zm-2.522 10.124a2.528 2.528 0 0 1 2.522 2.52A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.521-2.522v-2.52h2.521zm0-1.271a2.527 2.527 0 0 1-2.521-2.521 2.526 2.526 0 0 1 2.521-2.521h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.521h-6.313z" />
+          </svg>
+          Add to Slack
+        </a>
+      </div>
+      <button class="mobile-menu-btn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span>✨</span>
+          <span>Now with GPT-4 & Claude support</span>
+        </div>
+        <h1 class="hero-title">
+          Turn your team's <span class="highlight">real conversations</span> into content gold
+        </h1>
+        <p class="hero-subtitle">
+          ChitChatPosts quietly listens to your Slack channels and suggests LinkedIn & Twitter posts from authentic team
+          discussions. You decide what to share.
+        </p>
+        <div class="hero-cta">
+          <a href="/docs.html" class="btn btn-primary btn-slack btn-lg">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zm1.271 0a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zm0 1.271a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zm10.124 2.521a2.528 2.528 0 0 1 2.52-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.52V8.834zm-1.271 0a2.528 2.528 0 0 1-2.521 2.521 2.528 2.528 0 0 1-2.521-2.521V2.522A2.528 2.528 0 0 1 15.165 0a2.528 2.528 0 0 1 2.522 2.522v6.312zm-2.522 10.124a2.528 2.528 0 0 1 2.522 2.52A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.521-2.522v-2.52h2.521zm0-1.271a2.527 2.527 0 0 1-2.521-2.521 2.526 2.526 0 0 1 2.521-2.521h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.521h-6.313z" />
+            </svg>
+            Add to Slack — Frees
+          </a>
+          <a href="#how-it-works" class="btn btn-secondary btn-lg">
+            See Demo →
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Teams using it</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">10K+</div>
+            <div class="stat-label">Posts suggested</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">4.9★</div>
+            <div class="stat-label">User rating</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="card-header">
+            <div class="card-dots">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <span class="card-title">#product-team</span>
+          </div>
+          <div class="chat-messages">
+            <div class="chat-message">
+              <div class="chat-avatar purple">JB</div>
+              <div class="chat-bubble">We're debating: fix the bug now or ship the feature first?</div>
+            </div>
+            <div class="chat-message">
+              <div class="chat-avatar blue">SK</div>
+              <div class="chat-bubble">Bug affects 2% of users. Feature could help 40%. Ship it.</div>
+            </div>
+            <div class="chat-message">
+              <div class="chat-avatar green">AM</div>
+              <div class="chat-bubble">Document the bug, ship the feature, fix next sprint ✅</div>
+            </div>
+          </div>
+          <div class="ai-suggestion">
+            <div class="ai-badge">💡 Post-worthy idea</div>
+            <p class="ai-text">
+              <strong>LinkedIn Draft:</strong> Today we chose features over bugs. The bug affects 2% of users. The
+              feature could help 40%. Prioritization isn't about perfection—it's about impact.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">✨ Features</div>
+        <h2 class="section-title">Human-in-the-Loop, Always</h2>
+        <p class="section-subtitle">
+          ChitChatPosts suggests content. You decide what to share. No auto-posting, no spam, just thoughtful
+          recommendations.
+        </p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">👁️</div>
+          <h3>Silent Observer</h3>
+          <p>Sits quietly in your channels, listening to real discussions about product, growth, and tradeoffs.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💡</div>
+          <h3>Smart Suggestions</h3>
+          <p>AI identifies post-worthy moments and generates LinkedIn & Twitter drafts ready for your review.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">✋</div>
+          <h3>You're in Control</h3>
+          <p>Every suggestion is reviewed and edited by you. We never post anything automatically.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Privacy First</h3>
+          <p>No database storage. Messages live in memory for 4 hours max, then they're gone forever.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🤖</div>
+          <h3>GPT-4 & Claude</h3>
+          <p>Choose your AI provider. Use your own API key for full control over processing.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Instant Setup</h3>
+          <p>Add to Slack in 2 clicks. No complicated configuration. Works immediately.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">🔄 Process</div>
+        <h2 class="section-title">From Real Talk to Real Content</h2>
+        <p class="section-subtitle">
+          Four simple steps from team conversation to social media post.
+        </p>
+      </div>
+      <div class="steps-container">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <div class="step-icon">💬</div>
+          <h3>Have Conversations</h3>
+          <p>Discuss product decisions, growth experiments, learnings—the real stuff.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <div class="step-icon">🎧</div>
+          <h3>We Listen</h3>
+          <p>Our bot quietly watches for post-worthy moments in your everyday chatter.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <div class="step-icon">✨</div>
+          <h3>Get Suggestions</h3>
+          <p>Run /chitchatposts analyze to get AI-generated post drafts with explanations.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <div class="step-icon">🚀</div>
+          <h3>Share Authentically</h3>
+          <p>Edit, approve, and post content that actually sounds like you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Commands Section -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">⌨️ Commands</div>
+        <h2 class="section-title">Simple Commands, Smart Results</h2>
+        <p class="section-subtitle">
+          Everything you need, accessible from Slack's command line.
+        </p>
+      </div>
+      <div class="commands-grid">
+        <div class="command-card">
+          <h3>Analyze Now</h3>
+          <code class="command-code" data-copy="/chitchatposts analyze">/chitchatposts analyze</code>
+          <p>Analyze recent conversations for post-worthy ideas.</p>
+          <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+        </div>
+        <div class="command-card">
+          <h3>Look Back</h3>
+          <code class="command-code" data-copy="/chitchatposts history 4h">/chitchatposts history 4h</code>
+          <p>Fetch and analyze past conversations (1h, 4h, 1d).</p>
+          <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+        </div>
+        <div class="command-card">
+          <h3>Sync Up</h3>
+          <code class="command-code" data-copy="/chitchatposts sync">/chitchatposts sync</code>
+          <p>Never miss a message—picks up where you left off.</p>
+          <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Automated Analysis Section -->
+  <section id="autopilot">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">⏰ Autopilot</div>
+        <h2 class="section-title">Set It & Forget It</h2>
+        <p class="section-subtitle">
+          Enable automated analysis and get suggestions delivered to your channel—no commands needed.
+        </p>
+      </div>
+      <div class="autopilot-container">
+        <div class="autopilot-features">
+          <div class="autopilot-feature">
+            <div class="autopilot-icon">🕕</div>
+            <div class="autopilot-content">
+              <h4>Every 6 Hours</h4>
+              <p>Automatic analysis runs 4 times daily, catching insights from your team's conversations.</p>
+            </div>
+          </div>
+          <div class="autopilot-feature">
+            <div class="autopilot-icon">📅</div>
+            <div class="autopilot-content">
+              <h4>Daily Digest</h4>
+              <p>Get a comprehensive summary of the entire day's post-worthy moments at midnight.</p>
+            </div>
+          </div>
+          <div class="autopilot-feature">
+            <div class="autopilot-icon">🔁</div>
+            <div class="autopilot-content">
+              <h4>Smart Deduplication</h4>
+              <p>We skip suggestions that are too similar to previous ones—no spam, just fresh ideas.</p>
+            </div>
+          </div>
+          <div class="autopilot-feature">
+            <div class="autopilot-icon">📢</div>
+            <div class="autopilot-content">
+              <h4>Dedicated Channel</h4>
+              <p>All suggestions go to a channel you choose. Review and post when you're ready.</p>
+            </div>
+          </div>
+        </div>
+        <div class="autopilot-preview">
+          <div class="autopilot-card">
+            <div class="autopilot-card-header">
+              <div class="card-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <span class="card-title">#chitchatposts-suggestions</span>
+            </div>
+            <div class="autopilot-suggestion">
+              <div class="suggestion-meta">
+                <span class="suggestion-badge">💡 New Post Suggestion</span>
+                <span class="suggestion-source">6-hour analysis • Generated automatically</span>
+              </div>
+              <div class="suggestion-why">
+                <strong>Why this works:</strong>
+                <p>User shares a significant productivity improvement achieved through AI tools, showcasing a tangible
+                  benefit that resonates with others in the industry.</p>
+              </div>
+              <div class="suggestion-draft">
+                <div class="draft-label">📝 LinkedIn Draft:</div>
+                <p>Excited to share a recent breakthrough! We leveraged AI to reduce our publication time from 4 hours
+                  to just 2 minutes. This drastic improvement has boosted overall performance. It's incredible what the
+                  right tools can do for efficiency. #Productivity #AI</p>
+              </div>
+              <div class="suggestion-draft twitter">
+                <div class="draft-label">𝕏 Twitter/X Draft:</div>
+                <p>Just reduced our publication time from 4 hours to 2 mins using AI! 🚀 Huge boost in team performance.
+                  #Productivity #AI</p>
+              </div>
+              <div class="suggestion-footer">
+                <span>🔒 Please review and edit before posting. Human approval required.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Installation Options -->
+  <section id="install">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">🚀 Get Started</div>
+        <h2 class="section-title">Choose Your Setup</h2>
+        <p class="section-subtitle">
+          Two ways to get ChitChatPosts: hosted for convenience or self-hosted for control.
+        </p>
+      </div>
+      <div class="install-options">
+        <div class="install-card featured">
+          <div class="install-icon">☁️</div>
+          <h3>Hosted Version</h3>
+          <p class="subtitle">Plug & Play — Ready in 2 clicks</p>
+          <ul class="install-features">
+            <li><span class="check">✓</span> One-click Slack installation</li>
+            <li><span class="check">✓</span> We handle hosting & updates</li>
+            <li><span class="check">✓</span> OAuth handled automatically</li>
+            <li><span class="check">✓</span> Free tier available</li>
+            <li><span class="check">✓</span> Priority support</li>
+          </ul>
+          <a href="/docs.html" class="btn btn-primary btn-slack btn-md">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zm1.271 0a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zm0 1.271a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zm10.124 2.521a2.528 2.528 0 0 1 2.52-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.52V8.834zm-1.271 0a2.528 2.528 0 0 1-2.521 2.521 2.528 2.528 0 0 1-2.521-2.521V2.522A2.528 2.528 0 0 1 15.165 0a2.528 2.528 0 0 1 2.522 2.522v6.312zm-2.522 10.124a2.528 2.528 0 0 1 2.522 2.52A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.521-2.522v-2.52h2.521zm0-1.271a2.527 2.527 0 0 1-2.521-2.521 2.526 2.526 0 0 1 2.521-2.521h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.521h-6.313z" />
+            </svg>
+            Add to Slack
+          </a>
+        </div>
+        <div class="install-card">
+          <div class="install-icon">🔧</div>
+          <h3>Self-Hosted / Open Source</h3>
+          <p class="subtitle">Full control — Run it yourself</p>
+          <ul class="install-features">
+            <li><span class="check">✓</span> 100% open source (MIT)</li>
+            <li><span class="check">✓</span> Use your own API keys</li>
+            <li><span class="check">✓</span> Complete data control</li>
+            <li><span class="check">✓</span> Customize everything</li>
+            <li><span class="check">✓</span> Community support</li>
+          </ul>
+          <a href="/docs.html" class="btn btn-outline btn-md">
+            View Setup Guide →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">💰 Pricing</div>
+        <h2 class="section-title">Simple, Transparent Pricing</h2>
+        <p class="section-subtitle">
+          Start free, upgrade when you need more. No hidden fees.
+        </p>
+      </div>
+      <div class="pricing-grid">
+        <!-- Free Tier -->
+        <div class="pricing-card">
+          <h3 class="plan-name">Starter</h3>
+          <div class="price">$0<span>/mo</span></div>
+          <p class="price-subtitle">Perfect for trying it out</p>
+          <ul class="pricing-features">
+            <li><span class="check">✓</span> 1 Slack workspace</li>
+            <li><span class="check">✓</span> 50 suggestions/month</li>
+            <li><span class="check">✓</span> GPT-4 powered</li>
+            <li><span class="check">✓</span> Basic commands</li>
+            <li><span class="check">✓</span> 4-hour buffer</li>
+            <li><span class="cross">×</span> Priority support</li>
+          </ul>
+          <a href="/docs.html" class="btn btn-secondary btn-md">Get Started Free</a>
+        </div>
+
+        <!-- Pro Tier -->
+        <div class="pricing-card featured">
+          <div class="pricing-badge">Most Popular</div>
+          <h3 class="plan-name">Pro</h3>
+          <div class="price">$29<span>/mo</span></div>
+          <p class="price-subtitle">For growing teams</p>
+          <ul class="pricing-features">
+            <li><span class="check">✓</span> 3 Slack workspaces</li>
+            <li><span class="check">✓</span> Unlimited suggestions</li>
+            <li><span class="check">✓</span> GPT-4 & Claude</li>
+            <li><span class="check">✓</span> All commands</li>
+            <li><span class="check">✓</span> 24-hour buffer</li>
+            <li><span class="check">✓</span> Priority support</li>
+          </ul>
+          <a href="/docs.html" class="btn btn-primary btn-slack btn-md">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zm1.271 0a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zm0 1.271a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zm10.124 2.521a2.528 2.528 0 0 1 2.52-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.52V8.834zm-1.271 0a2.528 2.528 0 0 1-2.521 2.521 2.528 2.528 0 0 1-2.521-2.521V2.522A2.528 2.528 0 0 1 15.165 0a2.528 2.528 0 0 1 2.522 2.522v6.312zm-2.522 10.124a2.528 2.528 0 0 1 2.522 2.52A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.521-2.522v-2.52h2.521zm0-1.271a2.527 2.527 0 0 1-2.521-2.521 2.526 2.526 0 0 1 2.521-2.521h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.521h-6.313z" />
+            </svg>
+            Start Pro Trial
+          </a>
+        </div>
+
+        <!-- Enterprise Tier -->
+        <div class="pricing-card">
+          <h3 class="plan-name">Enterprise</h3>
+          <div class="price">Custom</div>
+          <p class="price-subtitle">For large organizations</p>
+          <ul class="pricing-features">
+            <li><span class="check">✓</span> Unlimited workspaces</li>
+            <li><span class="check">✓</span> Unlimited suggestions</li>
+            <li><span class="check">✓</span> Custom AI models</li>
+            <li><span class="check">✓</span> Dedicated support</li>
+            <li><span class="check">✓</span> Self-hosted option</li>
+            <li><span class="check">✓</span> SSO & Compliance</li>
+          </ul>
+          <a href="#" class="btn btn-outline btn-md">Contact Sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">💬 Testimonials</div>
+        <h2 class="section-title">Loved by Product Teams</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p>"It catches moments we would have missed. Finally, content that sounds like us, not like marketing."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">PL</div>
+            <div>
+              <strong>Product Lead</strong>
+              <span>Series A Startup</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p>"The suggestions are surprisingly thoughtful. It's like having a content strategist in our Slack."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">CT</div>
+            <div>
+              <strong>CTO</strong>
+              <span>50-person team</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p>"Setup took 2 minutes. First useful suggestion came within an hour. This is how tools should work."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">FD</div>
+            <div>
+              <strong>Founder</strong>
+              <span>B2B SaaS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="cta-title">Ready to turn chatter into content?</h2>
+      <p class="cta-subtitle">
+        Join 500+ teams already using ChitChatPosts to create authentic social media content from real conversations.
+      </p>
+      <div class="cta-buttons">
+        <a href="/docs.html" class="btn btn-primary btn-slack btn-xl">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zm1.271 0a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zm0 1.271a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zm10.124 2.521a2.528 2.528 0 0 1 2.52-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.52V8.834zm-1.271 0a2.528 2.528 0 0 1-2.521 2.521 2.528 2.528 0 0 1-2.521-2.521V2.522A2.528 2.528 0 0 1 15.165 0a2.528 2.528 0 0 1 2.522 2.522v6.312zm-2.522 10.124a2.528 2.528 0 0 1 2.522 2.52A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.521-2.522v-2.52h2.521zm0-1.271a2.527 2.527 0 0 1-2.521-2.521 2.526 2.526 0 0 1 2.521-2.521h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.521h-6.313z" />
+          </svg>
+          Add to Slack — Free
+        </a>
+        <a href="/docs.html" class="btn btn-secondary btn-xl">
+          View Documentation
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="footer-logo">
+            <span class="logo-icon">💬</span>
+            <span>ChitChatPosts</span>
+          </a>
+          <p>Turn your team's real conversations into thoughtful social media content. Human-in-the-loop, always.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">How it Works</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="/docs.html">Documentation</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Install</h4>
+          <ul>
+            <li><a href="/docs.html">Add to Slack</a></li>
+            <li><a href="/docs.html">Self-Host Guide</a></li>
+            <li><a href="https://github.com/sumanthpn07/chitchatposts" target="_blank">GitHub</a></li>
+            <li><a href="#">API Docs</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="https://www.linkedin.com/in/pnsumanth/" target="_blank">About</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Security</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="copyright">© 2026 ChitChatPosts. All rights reserved.</p>
+        <div class="footer-social">
+          <a href="https://x.com/chasersume07" target="_blank" aria-label="Twitter">𝕏</a>
+          <a href="https://www.linkedin.com/in/pnsumanth/" target="_blank" aria-label="LinkedIn">in</a>
+          <a href="https://github.com/sumanthpn07/chitchatposts" target="_blank" aria-label="GitHub">⌘</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
