@@ -9,6 +9,7 @@ import 'dotenv/config';
 import { App } from '@slack/bolt';
 import { registerSlackHandlers } from './handlers/slackHandlers.js';
 import { isConfigured, LLM_PROVIDER } from './services/llm.js';
+import { initScheduler } from './jobs/scheduler.js';
 
 // Validate required environment variables
 const requiredEnvVars = ['SLACK_BOT_TOKEN', 'SLACK_SIGNING_SECRET', 'SLACK_APP_TOKEN'];
@@ -32,10 +33,15 @@ const app = new App({
 registerSlackHandlers(app);
 
 const PORT = process.env.PORT || 3000;
+const CRON_ENABLED = process.env.CRON_ENABLED === 'true';
 
 (async () => {
   try {
     await app.start(PORT);
+
+    // Initialize scheduler with the Slack client
+    initScheduler(app.client);
+
     console.log(`
 ╔══════════════════════════════════════════════════════════╗
 ║                                                          ║
@@ -45,9 +51,12 @@ const PORT = process.env.PORT || 3000;
 ║   Port: ${PORT}                                            ║
 ║   LLM Provider: ${LLM_PROVIDER.padEnd(40)}║
 ║   LLM Configured: ${isConfigured() ? '✅ Yes' : '⚠️  No (set API key)'} ${' '.repeat(32 - (isConfigured() ? 6 : 21))}║
+║   Cron Jobs: ${CRON_ENABLED ? '✅ Enabled' : '⚠️  Disabled'} ${' '.repeat(39 - (CRON_ENABLED ? 10 : 11))}║
 ║                                                          ║
 ║   Commands:                                              ║
-║   /chitchatposts analyze - Analyze recent conversation   ║
+║   /chitchatposts analyze  - Analyze real-time buffer     ║
+║   /chitchatposts history  - Analyze past messages        ║
+║   /chitchatposts sync     - Sync from last checkpoint    ║
 ║                                                          ║
 ╚══════════════════════════════════════════════════════════╝
     `);
