@@ -618,37 +618,122 @@ app.get('/slack/oauth/callback', async (req, res) => {
                 </div>
             </section>
 
-            <!-- Cron -->
+            <!-- Cron / Autopilot -->
             <section id="cron" class="docs-section">
-                <h2>Automated Suggestions (Cron)</h2>
-                <p>Set up automatic analysis with <code>node-cron</code>:</p>
+                <h2>Automated Suggestions (Autopilot)</h2>
+                <p>ChitChatPosts can automatically analyze your channels and post suggestions without manual commands.
+                    This is the <strong>Autopilot</strong> feature.</p>
+
+                <div class="docs-callout info">
+                    <strong>💡 How it works:</strong> When enabled, the bot runs scheduled analysis every 6 hours and a
+                    daily summary at midnight. Suggestions are posted to a dedicated channel for your team to review.
+                </div>
+
+                <h4>Enable Autopilot</h4>
+                <p>Add these environment variables to your <code>.env</code> file:</p>
 
                 <div class="code-block large">
-                    <pre><code>// src/jobs/scheduler.js
-const cron = require('node-cron');
+                    <pre><code># Enable automated analysis
+CRON_ENABLED=true
 
-// Every 6 hours
-cron.schedule('0 */6 * * *', async () => {
-  console.log('Running 6-hour analysis...');
-  const messages = await fetchLastNHours(6);
-  const suggestion = await analyzeLLM(messages);
-  
-  if (suggestion.isPostWorthy) {
-    await postToChannel(SUGGESTIONS_CHANNEL, suggestion);
-  }
-});
+# Channel where suggestions will be posted
+SUGGESTIONS_CHANNEL_ID=C0123456789
 
-// Daily at midnight
-cron.schedule('0 0 * * *', async () => {
-  console.log('Running daily analysis...');
-  const messages = await fetchLastNHours(24);
-  const suggestion = await analyzeLLM(messages);
-  
-  // Check for duplicates before posting
-  if (suggestion.isPostWorthy && !isDuplicate(suggestion)) {
-    await postToChannel(SUGGESTIONS_CHANNEL, suggestion);
-  }
-});</code></pre>
+# Channels to monitor (comma-separated, leave empty for all)
+MONITORED_CHANNELS=C0123456789,C0987654321</code></pre>
+                </div>
+
+                <div class="env-table">
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Variable</th>
+                                <th>Required</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>CRON_ENABLED</code></td>
+                                <td>❌</td>
+                                <td>Set to "true" to enable automated analysis (default: false)</td>
+                            </tr>
+                            <tr>
+                                <td><code>SUGGESTIONS_CHANNEL_ID</code></td>
+                                <td>✅*</td>
+                                <td>Channel ID where suggestions will be posted</td>
+                            </tr>
+                            <tr>
+                                <td><code>MONITORED_CHANNELS</code></td>
+                                <td>❌</td>
+                                <td>Comma-separated list of channel IDs to monitor</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>Schedule</h4>
+                <p>When Autopilot is enabled, the bot runs on the following schedule:</p>
+                <ul>
+                    <li><strong>Every 6 hours</strong> (0:00, 6:00, 12:00, 18:00 UTC) — Analyzes the last 6 hours of
+                        conversation</li>
+                    <li><strong>Daily at midnight</strong> (UTC) — Comprehensive 24-hour summary</li>
+                </ul>
+
+                <h4>Smart Features</h4>
+                <div class="requirements-grid">
+                    <div class="requirement">
+                        <span class="req-icon">🔁</span>
+                        <div>
+                            <strong>Deduplication</strong>
+                            <p>Skips suggestions that are too similar to previous ones (>80% match)</p>
+                        </div>
+                    </div>
+                    <div class="requirement">
+                        <span class="req-icon">⏭️</span>
+                        <div>
+                            <strong>Skip Empty Runs</strong>
+                            <p>Won't re-analyze if no new messages have arrived since the last run</p>
+                        </div>
+                    </div>
+                    <div class="requirement">
+                        <span class="req-icon">📢</span>
+                        <div>
+                            <strong>Dedicated Channel</strong>
+                            <p>All automated suggestions go to a channel you specify</p>
+                        </div>
+                    </div>
+                    <div class="requirement">
+                        <span class="req-icon">🔒</span>
+                        <div>
+                            <strong>Human Approval</strong>
+                            <p>Suggestions are never posted to social media automatically</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h4>Example Output</h4>
+                <p>Here's what an automated suggestion looks like in Slack:</p>
+
+                <div class="code-block success">
+                    <code>💡 <strong>New Post Suggestion</strong>
+Source: 6-hour analysis • Generated automatically
+
+<strong>Why this works:</strong>
+User shares a significant productivity improvement achieved through AI tools, showcasing a tangible benefit that resonates with others in the industry.
+
+📝 <strong>LinkedIn Draft:</strong>
+Excited to share a recent breakthrough! We leveraged AI to reduce our publication time from 4 hours to just 2 minutes...
+
+𝕏 <strong>Twitter/X Draft:</strong>
+Just reduced our publication time from 4 hours to 2 mins using AI! 🚀 Huge boost in team performance. #Productivity #AI
+
+🔒 Please review and edit before posting. Human approval required.</code>
+                </div>
+
+                <div class="docs-callout warning">
+                    <strong>⚠️ Finding Channel IDs</strong> Right-click a channel in Slack → "View channel details" →
+                    Scroll to the bottom to find the Channel ID (starts with C).
                 </div>
             </section>
 
